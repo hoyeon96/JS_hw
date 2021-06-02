@@ -1,0 +1,88 @@
+body {
+	font-size : 1rem;
+  	font-family: 'Roboto', sans-serif;
+	font-weight : 400;
+	color : #000000;
+}
+
+
+/*input number타입 오른쪽 증감버튼 지우기*/
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+#inputForm p {
+	font-size: 1.5rem;
+	line-height: 2;
+	font-weight: 400;
+}
+
+.btn_group {
+	margin-top: 40px;
+}
+
+
+.profChoice {
+	display:block;
+	margin-right: 20px;
+	font-weight: 400;
+	font-size: 1.2rem;
+	line-height: 1.2;
+	color: #0d6efd;
+}
+
+.modal-title , .resultBox-title {
+	font-size: 3rem;
+}
+
+.modal-body , .resultBox-body {
+	font-size: 2rem;
+}
+
+.box_content {
+	margin: 20px 0 50px 0;
+}
+
+.resultBoxInner{
+	color: #2b2828;
+	text-align: center;
+	margin: 25% auto;
+}
+
+.resultBox-body {
+	justify-content: center;
+}
+
+.profChoice .form-check {
+	margin: 10px auto;
+}
+
+.inputBox_btn {
+	margin: 10px 0;
+}
+
+.modal-content {
+  width:500px;
+  border-radius: 4px;
+}
+
+.modal-header, .modal-body, .modal-footer {
+	width:100%;
+}
+
+@media (max-width: 991.5px) {
+.resultBox-lg {
+	display: none;
+}
+.btn {
+	margin: 3px 0;
+}
+}
+@media (min-width: 992px) {
+#open {
+	display: none;
+}
+}
