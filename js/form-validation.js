@@ -19,23 +19,38 @@
 // } 
 
 
-function validate(obj,min,max){
-        console.log(obj);
-        if (obj>=min && obj<=max) {
-      // alert("맞게 입력하셨습니다.")
-            return obj;
-        }else{
-            alert("범위내 숫자만 입력가능합니다.")   
-            return false;
-        }
-      }
+
 
 
 function onlyNum(obj,n=0) {// 숫자만 입력 가능
     var reg = /^[0-9]+/g;
     var NUM = "0123456789";
     var str_space = /\s/;  // 공백체크
+
+
+function checkExistData(value, dataName) {
+        if (value == "") {
+            alert(dataName + " 입력해주세요!");
+            return false;
+        }
+        return true;
+}
+
+function checkUserId(id) {
+        //Id가 입력되었는지 확인하기
+        if (!checkExistData(id, "아이디를"))
+            return false;
  
+            var idRegExp = /^[0-9]{8}$/; //아이디 유효성 검사
+        if (!idRegExp.test(id)) {
+            alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+            form.userId.value = "";
+            form.userId.focus();
+            return false;
+        }
+        return true; //확인이 완료되었을 때
+}
+
 //  이런거 안되던데??...
 //  //1~50
 //  // /^[1-9]{1}$|^[1-4]{1}[0-9]{1}$|^50$/

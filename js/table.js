@@ -15,7 +15,7 @@ function buildTable(data) {
     <td>${data[i].badGrade}</td> 
     </tr>`
      table.innerHTML += row;
-    console.log(table.rows.length);  
+    // console.log(table.rows.length);  
    } 
  }
 

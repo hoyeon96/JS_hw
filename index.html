@@ -33,21 +33,18 @@
 
 			<div class="mt-3 mb-5">
 				<label for="input_id" class="form-label">아이디</label>
-				<input id="input_id" name="wr_1" class="form-control" type="text" placeholder="ID를 입력하세요." required>
-				<div class="invalid-feedback"> ID를 입력하세요.</div>
+				<input id="input_id" name="wr_1" class="form-control" type="text" placeholder="ID를 입력하세요." maxlength="8" required>
 			</div>
 
 			<div class="mb-5">
 				<label for="input_score" class="form-label" numberonly/>점수</label>
-				<input id="input_score" class="form-control" type="number" placeholder="시험 성적을 입력하세요." onkeyup="onlyNum(this,0);" maxlength="3" required>
-				<div class="invalid-feedback"> 점수를 입력하세요.</div>
+				<input id="input_score" class="form-control" type="number" placeholder="시험 성적을 입력하세요." maxlength="3" required>
 			</div>
 
 			
 			<div class="mb-5">
 				<label for="input_att" class="form-label">결석횟수</label>
-				<input id="input_att" class="form-control" type="number" placeholder="결석 횟수를 입력하세요." onkeyup="onlyNum(this,0);" required>
-				<div class="invalid-feedback"> 결석횟수를 입력하세요.</div>
+				<input id="input_att" class="form-control" type="number" placeholder="결석 횟수를 입력하세요." required>
 			</div>
 
 
@@ -55,18 +52,17 @@
 			<div class="mb-5">
 				<label for="input_common" class="form-label">유고횟수</label>
 				<input id="input_common" class="form-control" type="number" placeholder="출석인정 횟수를 입력하세요." required>
-				<div class="invalid-feedback"> 유고횟수를 입력하세요.</div>
 			</div>
 			
 
 
 		    <div class="btn_group d-grid gap-2 d-lg-flex justify-content-lg-center">
 		    	<div class="profChoice d-md-flex d-lg-block">
-		    		<div class="form-check">
+		    		<div class="goodprof form-check">
 		              <input value="good" name="calcMethod" type="radio" class="form-check-input" checked required>
 		              <label class="form-check-label" for="goodprof">좋은 교수</label>
 		            </div>
-		            <div class="form-check">
+		            <div class="badprof form-check">
 		              <input value="bad" name="calcMethod" type="radio" class="form-check-input" required>
 		              <label class="form-check-label" for="badprof">나쁜 교수</label>
 		            </div>
@@ -87,14 +83,9 @@
 		<!-- 화면크기 클 시 학점결과 창 -->
 		<div class="resultBox-lg my-3 border rounded-3 bg-light col-lg-5 col-md-offset-1">
 			<div class="resultBoxInner">
-			    <h5 class="box_content resultBox-title"><span id="result_ID"></span>님의 학점은<span id="result_score"></span></h5>
+			    <h5 class="box_content resultBox-title"><span id="result_ID"></span><br>님의 학점은<br><span id="result_score"></span></h5>
 			    <div class="resultBox-body">
-			        <div class="good_select box_content">
-						<span>Good Prof : </span><span id="goodProf_result"></span>
-					</div>
-					<div class="bad_select box_content">
-						<span>Bad Prof : </span><span id="badProf_result"></span>
-					</div>
+			        <div class="box_content" id="result"></div>
 				</div>
 		    	<!-- <button type="button" id="table_show" class="inputBox_btn btn btn-primary btn-md px-4 gap-3">상세보기</button> -->
 			</div>
@@ -107,14 +98,6 @@
 			      <div class="modal-header">
 			        <h5 class="modal-title"><span id="result_ID2"></span>님의 학점은<span id="result_score2"></span></h5>
 			      </div>
-			      <div class="modal-body">
-			        <div>
-						<span>Good Prof : </span><span id="goodProf_result2"></span>
-					</div>
-					<div>
-						<span>Bad Prof : </span><span id="badProf_result2"></span>
-					</div>
-				  </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="close">Close</button>
 			      </div>
