@@ -24,3 +24,4 @@ mql.addListener(function(e) {
         modal.style.display = "none";
     }
 });
+
