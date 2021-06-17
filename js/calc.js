@@ -17,30 +17,95 @@ function checkExistData(value, dataName) {
         return true;
 }
 
+function checkRange(value,min,max) {
+  if (value<min || value>max) {
+    return false;
+  }
+
+  return true;  //확인이 완료되었을 때
+}
+
 function checkUserId(id) {
         //입력되었는지 확인하기
-        if (!checkExistData(id, "아이디를"))
+        if (!checkExistData(id.value, "아이디를"))
             return false;
  
             var idRegExp = /^[0-9]{8}$/; //아이디 유효성 검사
-        if (!idRegExp.test(id)) {
+        if (!idRegExp.test(id.value)) {
             alert("아이디는 숫자 8자리로 입력해야합니다!");
-            document.getElementById("input_id").value = "";
-            document.getElementById("input_id").focus();
+            id.value = "";
+            id.focus();
             return false;
         }
         return true; //확인이 완료되었을 때
 }
 
-function validate(obj,min,max){
-        console.log(obj);
-        if (obj>=min && obj<=max) {
-      // alert("맞게 입력하셨습니다.")
-            return obj;
-        }else{
-            alert("범위내 숫자만 입력가능합니다.")   
+
+function checkScore(score) {
+        //입력되었는지 확인하기
+        if (!checkExistData(score.value, "점수를"))
             return false;
-        }
+ 
+            var ScoreRegExp = /^[0-9]{1,3}$/; //아이디 유효성 검사
+        if (!ScoreRegExp.test(score.value)) {
+            alert("올바른 값을 입력해야합니다!");
+            score.value = "";
+            score.focus();
+            return false;
+          } else {
+            if(!checkRange(parseInt(score.value),0,100)){
+              alert("점수는 0 ~ 100점 사이로 입력해야합니다!");
+              score.value = "";
+              score.focus();
+              return false;
+            }
+          }
+
+        return true; //확인이 완료되었을 때
+}
+
+function checkAtt(att) {
+        //입력되었는지 확인하기
+        if (!checkExistData(att.value, "결석횟수를"))
+            return false;
+ 
+            var AttRegExp = /^[0-9]{1,2}$/; //아이디 유효성 검사
+        if (!AttRegExp.test(att.value)) {
+            alert("올바른 값을 입력해야합니다!");
+            att.value = "";
+            att.focus();
+            return false;
+        } else {
+            if(!checkRange(parseInt(att.value),0,10)){
+              alert("횟수는 10회 이내로 입력해야합니다!");
+              att.value = "";
+              att.focus();
+              return false;
+            }
+          }
+        return true; //확인이 완료되었을 때
+}
+
+function checkCom(com,att) {
+        //입력되었는지 확인하기
+        if (!checkExistData(com.value, "유고횟수를"))
+            return false;
+ 
+            var comRegExp = /^[0-9]{1,2}$/; //아이디 유효성 검사
+        if (!comRegExp.test(com.value)) {
+            alert("올바른 값을 입력해야합니다!");
+            com.value = "";
+            com.focus();
+            return false;
+        } else {
+            if(!checkRange(parseInt(com.value),0,att.value)){
+              alert("횟수는 결석횟수 이내로 입력해야합니다!");
+              com.value = "";
+              com.focus();
+              return false;
+            }
+          }
+        return true; //확인이 완료되었을 때
 }
 
 
@@ -49,19 +114,14 @@ calc.addEventListener('click', function(){
 const checkprof = document.querySelector('input[name="calcMethod"]:checked').value;
 console.log("calc 가 클릭되었습니다.");
 
-  // checkUserId(document.getElementById("input_id").value);
-
-  if (!checkExistData(document.getElementById("input_score").value, "점수를"))
-          return false;
-  if (!checkExistData(document.getElementById("input_att").value, "결석횟수를"))
-          return false;
-  if (!checkExistData(document.getElementById("input_common").value, "유고횟수를"))
-          return false;
-
-  //입력값 검증 
-   if (validate(document.getElementById("input_score").value,0,100)===false) return 0;
-   if (validate(document.getElementById("input_att").value,0,10)===false) return 0;
-   if (validate(document.getElementById("input_common").value,0,document.getElementById("input_att").value)===false) return 0;
+  if(!checkUserId(document.getElementById("input_id")))
+    return false;
+  if(!checkScore(document.getElementById("input_score")))
+    return false;
+  if(!checkAtt(document.getElementById("input_att")))
+    return false;
+  if(!checkCom(document.getElementById("input_common"),document.getElementById("input_att")))
+    return false;
 
   const inputId = document.getElementById("input_id").value;
   const inputScore = parseInt(document.getElementById("input_score").value);
@@ -80,8 +140,6 @@ console.log("calc 가 클릭되었습니다.");
   );
 
   let addStudent = studentList.length;
-
-
     if(!studentList.filter( (x) => x.id === temp.id).map((x)=>x.id)[0]){
       studentList[addStudent] = temp; 
 
@@ -92,9 +150,12 @@ console.log("calc 가 클릭되었습니다.");
       ranking(studentList);
       addStudent = studentList.findIndex((x) => x.id === inputId);
       studentList[addStudent].badGrade = studentList[addStudent].badProf(studentList.filter( (x) => x.id === inputId ).map( (x) => x.prize));
-    } else {
+    } 
+    else {
+      if(studentList.filter( (x) => x.id === temp.id).map((x)=>x.score)[0] !== temp.score){
       alert("아이디가 중복되었습니다.");
       return 0;
+      }
     }
 
     if(studentList.filter( (x) => x.id === temp.id).map((x)=>x.id)[0]){
