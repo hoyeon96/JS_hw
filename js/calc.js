@@ -5,6 +5,7 @@ const resultTitle = document.getElementById("result_ID");
 const result = document.getElementById("result_score");
 const resultTitle2 = document.getElementById("result_ID2");
 const result2 = document.getElementById("result_score2");
+const scoreInfo = document.getElementById("scoreInfo");
 
 
 // 입력데이터 검사
@@ -120,13 +121,14 @@ console.log("calc 가 클릭되었습니다.");
 
   resultTitle.innerText = inputId;
   resultTitle2.innerText = inputId;
+  scoreInfo.style.display = "block";
 
 
   if (checkprof === "good"){
     
     result.innerText = studentList[addStudent].goodGrade;
-    resultBox.innerText = "Good Prof : " + studentList[addStudent].goodGrade;
 
+    resultBox.innerText = "Good Prof : " + studentList[addStudent].goodGrade;
     result2.innerText = studentList[addStudent].goodGrade;
 
   } else {
