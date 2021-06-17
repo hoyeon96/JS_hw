@@ -92,6 +92,9 @@ console.log("calc 가 클릭되었습니다.");
       ranking(studentList);
       addStudent = studentList.findIndex((x) => x.id === inputId);
       studentList[addStudent].badGrade = studentList[addStudent].badProf(studentList.filter( (x) => x.id === inputId ).map( (x) => x.prize));
+    } else {
+      alert("아이디가 중복되었습니다.");
+      return 0;
     }
 
     if(studentList.filter( (x) => x.id === temp.id).map((x)=>x.id)[0]){
